@@ -4,6 +4,8 @@ import java.util.Set;
 
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.DataStoreFactorySpi;
+import org.geotools.data.ogr.OGR;
+import org.geotools.data.ogr.OGRDataStore;
 import org.geotools.data.ogr.OGRDataStoreFactory;
 import org.geotools.data.ogr.jni.JniOGRDataStoreFactory;
 
@@ -14,8 +16,8 @@ public class App
   {
     // Dumping available datastores
     boolean containsOGR = false;
-    Iterator<DataStoreFactorySpi> dtf =  DataStoreFinder.getAllDataStores();
     System.out.println("[GDAL/OGR-SAMPLE] Available datastores:");
+    Iterator<DataStoreFactorySpi> dtf =  DataStoreFinder.getAllDataStores();
     while (dtf.hasNext()) {
       DataStoreFactorySpi dsfspi = dtf.next();
       System.out.println("\t" + dsfspi.getDisplayName());
@@ -25,7 +27,13 @@ public class App
     if (! containsOGR) {
       System.out.println("[GDAL/OGR-SAMPLE] OGR Datastore could not be found.");
     }
-
+    OGRDataStoreFactory f = new JniOGRDataStoreFactory();
+    
+    if (f.isAvailable()) {
+        System.out.println("[GDAL/OGR-SAMPLE] OGR Datastore available.");
+    } else {
+        System.out.println("[GDAL/OGR-SAMPLE] OGR Datastore unavailable.");
+    }
     // Dumping OGR drivers (should fail if unable to load the ogrjni library)
     System.out.println("[GDAL/OGR-SAMPLE] trying to enumerate OGR drivers.");
     try {
