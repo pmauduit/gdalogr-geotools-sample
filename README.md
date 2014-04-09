@@ -9,3 +9,9 @@ $ mvn clean package
 $ mvn exec:java
 ```
 
+or, by hand:
+
+```
+$ java -cp target/gdalogr-geotools-sample-1.0-SNAPSHOT-jar-with-dependencies.jar:other/path/for/classpath \
+    -Djava.library.path=... com.camptocamp.gdalogr.App
+```
