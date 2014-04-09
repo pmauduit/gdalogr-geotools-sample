@@ -6,6 +6,6 @@ gdalogr-geotools-sample is a program to test JVM setups against GDAL/OGR GeoTool
 
 ```
 $ mvn clean package
-$ mvn run:java
+$ mvn exec:java
 ```
 
