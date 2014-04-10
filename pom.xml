@@ -56,6 +56,15 @@
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-imageio-ext-gdal</artifactId>
 			<version>${gt.version}</version>
+			<exclusions>
+			  <!-- This should be provided by the system
+			  because highly dependant of the compiled version of underlying native
+			  GDAL/OGR library  -->
+			  <exclusion>
+			  	<groupId>it.geosolutions.imageio-ext</groupId>
+          		<artifactId>imageio-ext-gdal-bindings</artifactId>
+			  </exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.geotools.xsd</groupId>
@@ -76,6 +85,13 @@
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-ogr-jni</artifactId>
 			<version>${gt.version}</version>
+			<exclusions>
+				<!-- Same remark as above: redundant -->
+				<exclusion>
+					<groupId>org.gdal</groupId>
+					<artifactId>gdal</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.geotools</groupId>
